@@ -26,9 +26,4 @@ def canUnlockAll(boxes):
             break
 
     # Check if not all boxes are unlocked
-    if (
-        unvisited == set() and len(visited_boxes) < total_boxes
-    ) or next_box > total_boxes:
-        return False
-
-    return True
+    return len(visited_boxes) == total_boxes
