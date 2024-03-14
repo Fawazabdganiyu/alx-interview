@@ -3,7 +3,7 @@
 
 
 def canUnlockAll(boxes):
-    """ Determine if all the boxes can be opened """
+    """Determine if all the boxes can be opened"""
     total_boxes = len(boxes)
     keys = {0}
     visited_boxes = set()
@@ -26,8 +26,9 @@ def canUnlockAll(boxes):
             break
 
     # Check if not all boxes are unlocked
-    if ((unvisited == set() and len(visited_boxes) < total_boxes)
-            or next_box > total_boxes):
+    if (
+        unvisited == set() and len(visited_boxes) < total_boxes
+    ) or next_box > total_boxes:
         return False
 
     return True
