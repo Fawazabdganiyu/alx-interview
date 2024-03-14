@@ -3,20 +3,24 @@
 
 
 def canUnlockAll(boxes):
-    """Determine if all the boxes can be opened"""
+    """Determine if all the boxes can be opened
+
+    Args:
+        boxes(list): list of lists
+
+    Returns:
+        bool: True if all boxes can be opened, else False
+    """
     total_boxes = len(boxes)
     keys = {0}
     visited_boxes = set()
 
     next_box = 0
     while next_box != total_boxes:
-        # Keep track of the encountered keys
         keys.update(boxes[next_box])
-        # Keep track of the visited boxes
         visited_boxes.add(next_box)
-        # Get the current unvisited boxes
         unvisited = keys.difference(visited_boxes)
-        # Confirm that not all boxes have been visited
+        # Break the loop when no keys to unlock any box
         if unvisited == set():
             break
         # Get the next box to be visited according to the boxes index
