@@ -13,3 +13,11 @@ print(validUTF8(data))
 
 data = [229, 65, 127, 256]
 print(validUTF8(data))
+
+data = [197, 130, 1]  # Represents the UTF-8 encoding of "Ç" followed by garbage
+print(validUTF8(data))
+for i in data:
+    print(bin(i)[2:])
+
+data = [197, 130]  # Represents the UTF-8 encoding of "Ç"
+print(validUTF8(data))
