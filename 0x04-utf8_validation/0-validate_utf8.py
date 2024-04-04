@@ -14,20 +14,21 @@ def validUTF8(data: List) -> bool:
     Returns:
         bool: True if data is a valid utf-8 encoding else False
     """
-    bits = 0
-    valid = True
-    for i in data:
+    num_bytes = 0
+    for byte in data:
         lsb = 1 << 7
-        if bits == 0:
-            while i & lsb:  # 110xxxxx	10xxxxxx
-                bits += 1
+        if num_bytes == 0:
+            while byte & lsb:  # 110xxxxx	10xxxxxx
+                num_bytes += 1
                 lsb >>= 1
-            if bits == 0:
-                continue
+            if num_bytes > 1:
+                num_bytes -= 1
+            if num_bytes == 1:
+                return False
         else:
-            if bits < 5 and (i & lsb) and not (i & (1 << 6)):
-                bits -= 1
+            if num_bytes < 4 and (byte & lsb) and not (byte & (1 << 6)):
+                num_bytes -= 1
             else:
-                valid =  False
+                return False
 
-    return valid
+    return num_bytes == 0
