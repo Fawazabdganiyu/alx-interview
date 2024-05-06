@@ -16,16 +16,11 @@ def makeChange(coins, total):
         return 0
 
     coins.sort(reverse=True)
-    i = 0
-    num_coins = 0
-    while i < len(coins) and total > 0:
-        if coins[i] <= total:
-            total -= coins[i]
-            num_coins += 1
-        else:
-            i += 1
+    coins_needed = 0
+    for coin in coins:
+        if total == 0:
+            break
+        coins_needed += total // coin
+        total %= coin
 
-    if total != 0:
-        return -1
-
-    return num_coins
+    return coins_needed if total == 0 else -1
